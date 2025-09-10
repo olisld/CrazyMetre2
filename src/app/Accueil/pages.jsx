@@ -11,13 +11,9 @@ import {
 } from "@/components/ui/card"
 
 import { useEffect, useState } from "react"
+import Link from "next/link"
 
 export default function Accueil(){
-    const tableau= [
-        {id:1,name:"olivier"},
-        {id:2,name:"MAthis"}
-    ]
-
     const[isLoading,setIsLoading]=useState(false)
     const[data,setData]=useState([])
 
@@ -39,8 +35,8 @@ export default function Accueil(){
             console.log(data)
         }
         return data
-
     }
+
     useEffect(()=>{
         fetchData("http://127.0.0.1:8000/api/questionnaires")
     },[])
@@ -48,26 +44,29 @@ export default function Accueil(){
     return(
         isLoading?(
             <h1>chargement...</h1>
-        ):(
-            data.map((item,index)=>{
-            return(
-                <Card bgColor="bg-white" key={index}>
-                <CardHeader>
-                    <CardTitle>{item.title}</CardTitle>
-                    <CardDescription>Card Description</CardDescription>
-                    <CardAction>Card Action</CardAction>
-                </CardHeader>
-                <CardContent>
-                    <p>Card Content</p>
-                </CardContent>
-                <CardFooter>
-                    <p>Card Footer</p>
-                </CardFooter>
-            </Card>
-            )
-            
-        })
-            
+        ):(<>
+               { data.map((item,index)=>{
+                    return(
+                    <Card bgColor="bg-white" key={index}>
+                        <CardHeader>
+                            <CardTitle>{item.title}</CardTitle>
+                            <CardDescription>Card Description</CardDescription>
+                            <CardAction>Card Action</CardAction>
+                        </CardHeader>
+                        <CardContent>
+                            <p>Card Content</p>
+                        </CardContent>
+                        <CardFooter>
+                            <p>Card Footer</p>
+                        </CardFooter>
+                    </Card>
+                    )
+                    
+                    
+                    })}
+                    {/* <Link href="/admin">Page Admin</Link> */}
+            </>
+             
         )
     )
 }
