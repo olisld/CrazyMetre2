@@ -42,31 +42,39 @@ export default function Accueil(){
     },[])
     
     return(
-        isLoading?(
-            <h1>chargement...</h1>
-        ):(<>
-               { data.map((item,index)=>{
-                    return(
-                    <Card bgColor="bg-white" key={index}>
-                        <CardHeader>
-                            <CardTitle>{item.title}</CardTitle>
-                            <CardDescription>Card Description</CardDescription>
-                            <CardAction>Card Action</CardAction>
-                        </CardHeader>
-                        <CardContent>
-                            <p>Card Content</p>
-                        </CardContent>
-                        <CardFooter>
-                            <p>Card Footer</p>
-                        </CardFooter>
-                    </Card>
-                    )
+        <>
+            <Link href="/admin" ><h1>Page admin</h1></Link>
+            {
+                isLoading?(
+                    <h1>chargement...</h1>
+                ):(<>
+                    { data.map((item,index)=>{
+                            return(
+                            <Card bgColor="bg-white" key={index}>
+                                <CardHeader>
+                                    <CardTitle>{item.title}</CardTitle>
+                                    <CardDescription>Card Description</CardDescription>
+                                    <CardAction>Card Action</CardAction>
+                                </CardHeader>
+                                <CardContent>
+                                    <p>Card Content</p>
+                                </CardContent>
+                                <CardFooter>
+                                    <p>Card Footer</p>
+                                </CardFooter>
+                            </Card>
+                            )
+                            
+                            
+                            })}
+                            {/* <Link href="/admin">Page Admin</Link> */}
+                    </>
                     
-                    
-                    })}
-                    {/* <Link href="/admin">Page Admin</Link> */}
-            </>
-             
-        )
+                )
+
+            }
+            
+        </>
+        
     )
 }
