@@ -27,7 +27,7 @@ export default function QuestionEditor({
 return(
     <>
             <ModelPages>
-                <form action="" method="POST" onSubmit={handleCreateQuestionnaire}>
+                <form action="" method="POST">
                     <input type="text" placeholder="titre"/>
                     <input type="Submit"/>
                 </form>
