@@ -45,12 +45,16 @@ export default function Admin() {
       setIsNewQuestion(false)
     }
 
+    async function postQuestionnaire(){
+      
+    }
+
     useDebugConsoleLog(isNewQuestion,"isNewQuestion")
   return (
     
 
         <main className="flex-1 p-4 flex  gap-4">
-          <button onClick={()=>setIsOpen(!isOpen)}> Creer une question</button>
+          <button onClick={()=>setIsOpen(!isOpen)}> Creer un questionnaire</button>
 
           <PageMiddle>
                 {isOpen?(
