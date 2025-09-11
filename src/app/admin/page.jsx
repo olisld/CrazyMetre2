@@ -8,9 +8,14 @@ import {
   SidebarHeader,
   SidebarTrigger,
 } from "@/components/ui/sidebar"
+
 import { useState } from "react"
 import Link from "next/link"
 import styled from "styled-components"
+// import de composant 
+import QuestionEditor from "../question-editor/page"
+import useDebugConsoleLog from "@/hooks/use-debug-console"
+
 const PageMiddle=styled.div`
     display:flex
     flex-direction:column;
@@ -22,34 +27,44 @@ const PageMiddle=styled.div`
 export default function Admin() {
     // gestion de l'ouverture des sections
     const[isOpen,setIsOpen]=useState(false)
-    const[isNewTache,setIsNewTache]=useState(false)
+    const[isNewQuestion,setIsNewQuestion]=useState(false)
+    const[newQuestion,setNewQuestion]=useState([])
+    const[question,setQuestion]=useState("")
+    const [reponse,setReponse]=useState("")
+    function HandleSubmitTask(){
 
+    }
+
+
+    function handleOpenFormTask(){
+      setIsNewQuestion(true)
+      console.log(newQuestion)
+    }
+
+    function cancelTask(){
+      setIsNewQuestion(false)
+    }
+
+    useDebugConsoleLog(isNewQuestion,"isNewQuestion")
   return (
-    <SidebarProvider>
-      <div className="flex">
-        <Sidebar>
-          <SidebarHeader />
-          <SidebarContent>
-            <SidebarGroup>
-              <p>Dashboard</p>
-            </SidebarGroup>
-            <SidebarGroup> 
-              <button onClick={() => setIsOpen(!isOpen)}>Creer des questionnaires</button>
-            </SidebarGroup>
-            <SidebarGroup>
-                <Link href="/accueil">Retour a la page d'accueil</Link>
-            </SidebarGroup>
-
-          </SidebarContent>
-          <SidebarFooter />
-        </Sidebar>
+    
 
         <main className="flex-1 p-4 flex  gap-4">
-          <SidebarTrigger /> {/* ✅ bouton pour ouvrir/fermer */}
+          <button onClick={()=>setIsOpen(!isOpen)}> Creer une question</button>
+
           <PageMiddle>
                 {isOpen?(
                     <>
-                        <h1>La page est ouverte</h1>
+                        <QuestionEditor
+                          isNewQuestion={isNewQuestion}
+                          HandleOpenFormTask={handleOpenFormTask}
+                          setQuestion={setQuestion}
+                          setReponse={setReponse}
+                          HandleSubmitTask={HandleSubmitTask}
+                          question={question}
+                          reponse={reponse}
+                          cancel={cancelTask}
+                        />
                         
                     </>
                         
@@ -60,10 +75,6 @@ export default function Admin() {
           </PageMiddle>
             
         </main>
-      </div>
-      
-      
-    </SidebarProvider>
 
   )
 }
